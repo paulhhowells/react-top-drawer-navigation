@@ -1,13 +1,45 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+/**
+	Normalise:
+	thanks to: https://github.com/necolas/normalize.css/blob/master/normalize.css
+*/
+html, body {
+	margin: 0;
+	padding: 0;
+}
+html {
+  -webkit-text-size-adjust: 100%; /* Prevent adjustments of font size after orientation changes in iOS. */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+main {
+	display: block; /* Render the `main` element consistently in IE. */
+}
+img {
+	border-style: none; /* Remove the border on images inside links in IE 10. */
+}
+a {
+	background-color: transparent; /* Remove the gray background on active links in IE 10. */
+}
+pre {
+ font-family: monospace, monospace; /* Correct the inheritance and scaling of font size in all browsers. */
+ font-size: 1em; /* Correct the odd `em` font sizing in all browsers. */
+}
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+/* Defaults: */
+body {
+	font-family: "Helvetica Neue", sans-serif;
+	font-size: 1rem;
+	line-height: 1.375;
+	color: #FFF;
+	background: #333;
+}
+p {
+	margin: 1em 0;
+	font-weight: 300;
+}
+h1 {
+	margin: 0.25em 0;
+	font-weight: 600;
+	font-size: 3.75rem;
+	line-height: 1.2;
 }
