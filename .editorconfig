@@ -1,0 +1,22 @@
+# https://EditorConfig.org
+
+# top-most EditorConfig file
+root = true
+
+# Unix-style newlines with a newline ending every file
+[*]
+end_of_line = lf
+insert_final_newline = true
+charset = utf-8
+trim_trailing_whitespace = true
+
+# 2 space tab indentation
+[*.{css,js,json,jsx,htm,html,less,md,sass,svg,yaml}]
+indent_style = tab
+indent_size = 2
+tab_width = 2
+
+# markdown
+[*.md]
+# do not remove any whitespace characters preceding newline characters
+trim_trailing_whitespace = false
