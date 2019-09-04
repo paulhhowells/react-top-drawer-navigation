@@ -1,0 +1,30 @@
+/* Footer */
+.footer {
+	background:
+		repeating-linear-gradient(
+			to right,
+			#0001 0,
+			#0001 1rem,
+			#0000 1rem,
+			#0000 calc(((100% - 5rem) / 4) + 1rem)
+		),
+		#0C2C3A;
+}
+.footer__inner {
+	padding-top: 1rem;
+	padding-bottom: 1rem;
+}
+@media screen and (min-width: 36rem) {
+	.footer__inner {
+		background:
+			repeating-linear-gradient(
+				to right,
+				#0001 0,
+				#0001 1rem,
+				#0000 1rem,
+				#0000 calc(((100% - 9rem) / 8) + 1rem)
+			),
+			#0C2C3A;
+	}
+}
+

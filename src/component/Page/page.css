@@ -1,0 +1,237 @@
+/* Components: */
+.page {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+
+	/* Below 20rem this will cause the viewport will scale. */
+	min-width: 20rem;
+}
+.page__main {
+	flex-grow: 1;
+}
+@media screen and (max-width: 48rem) {
+	.nav--enter .page__main {
+		pointer-events: none;
+
+		-webkit-user-select: none;  /* Chrome all / Safari all */
+		-webkit-touch-callout: none;
+		-moz-user-select: none;     /* Firefox all */
+		-ms-user-select: none;      /* IE 10+ */
+		user-select: none;
+
+		filter: blur(3px);
+	}
+}
+
+body.no-scroll {
+	overflow: hidden;
+}
+@media screen and (min-width: 48rem) {
+	body.no-scroll {
+		overflow: auto;
+	}
+}
+.overlay {
+	position: fixed;
+	height: 0;
+	width: 100%;
+	z-index: 1;
+	background: #111D;
+	pointer-events: none;
+
+	-webkit-user-select: none;  /* Chrome all / Safari all */
+	-webkit-touch-callout: none;
+	-moz-user-select: none;     /* Firefox all */
+	-ms-user-select: none;      /* IE 10+ */
+	user-select: none;
+
+	/* TODO:
+	fades in but does not fade out
+	need one class for fading in, and another for fading out
+	*/
+	transition: height 0, opacity 1.5s;
+	transition-delay: 0s, 0.5s;
+	opacity: 0;
+}
+.overlay.is-visible,
+.nav--enter .overlay {
+	height: 100%;
+	top: 0;
+	bottom: 0;
+	opacity: 1;
+}
+@media screen and (min-width: 48rem) {
+	.overlay.is-visible,
+	.nav--enter .overlay {
+		display: none;
+		height: 0;
+		width: 0;
+	}
+}
+
+/* Header navigation */
+.header-nav {
+	position: -webkit-sticky;
+	position: sticky;
+	top: 0;
+	z-index: 2;
+	color: #FFF;
+	background: #0C2C3A;
+}
+.header-nav__inner {}
+.header-nav__auxiliary {
+	display: flex;
+	justify-content: space-between;
+	padding: 0 1rem;
+}
+.header-nav__logo {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	width: 4rem;
+	height: 2rem;
+	background: #E57767;
+}
+.header-nav__button {
+	-webkit-appearance: none;
+	appearance: none;
+	display: inline-block;
+	border: none;
+	background: transparent;
+	color: #fff;
+	font-size: 1em;
+	line-height: 1.375;
+}
+.header-nav__links {
+	position: absolute;
+	overflow: hidden;
+	width: 100%;
+	height: 0;
+	padding-bottom: 10px;
+}
+.nav--enter .header-nav__links,
+.nav--leave .header-nav__links {
+	height: auto;
+}
+
+.header-nav__links-inner {
+	will-change: transition;
+	transform: translate(0, -100%);
+	display: flow-root;
+	box-sizing: border-box;
+	padding: 1.25rem 1rem;
+	background: #0C2C3A;
+}
+.nav--enter .header-nav__links-inner {
+	transition: transform 1s;
+}
+.nav--enter-active .header-nav__links-inner {
+	transform: translate(0, 0%);
+	box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.3);
+}
+.nav--leave .header-nav__links-inner {
+	transition: transform 1s;
+	transform: translate(0, 0%);
+}
+.nav--leave-active .header-nav__links-inner {
+	transform: translate(0, -100%);
+}
+
+.header-nav__links-inner a {
+	display: block;
+	padding: 0.5em 0;
+}
+.header-nav__links-inner a,
+.header-nav__links-inner a:link,
+.header-nav__links-inner a:visited {
+	color: #fff;
+	text-decoration: underline;
+}
+.header-nav__links-inner a:focus,
+.header-nav__links-inner a:hover {
+	color: #fff;
+	text-decoration: none;
+	background: lime;
+}
+.header-nav__links-inner a:active {
+	background: cyan;
+}
+
+@media screen and (min-width: 48rem) {
+	.header-nav {}
+	.header-nav__inner {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: center;
+		box-sizing: border-box;
+		max-width: 64rem;
+		margin: 0 auto;
+		padding: 0 1rem;
+	}
+	.header-nav__auxiliary {
+		padding: 0;
+	}
+	.header-nav__links {
+		position: static;
+		width: auto;
+		height: auto;
+		box-shadow: none;
+		padding-bottom: 0;
+	}
+	.header-nav__links-inner {
+		padding: 0 0 0 1rem;
+	}
+	.header-nav__links-inner,
+	.nav--enter .header-nav__links-inner {
+		transition: none;
+		transform: none;
+		will-change: auto;
+		box-shadow: none;
+	}
+	.header-nav__links-inner a {
+		display: inline-block;
+		margin: 0 0 0 1em;
+		padding: 0.25rem 0;
+	}
+	.header-nav__button {
+		display: none;
+	}
+}
+
+/* https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+	.nav--enter .header-nav__links-inner,
+	.nav--leave .header-nav__links-inner {
+		transition: none;
+		animation: none;
+	}
+}
+
+/* Apply grid column background to header. */
+.header-nav__inner {
+	background:
+		repeating-linear-gradient(
+			to right,
+			#0001 0,
+			#0001 1rem,
+			#0000 1rem,
+			#0000 calc(((100% - 5rem) / 4) + 1rem)
+		),
+		#0C2C3A;
+}
+@media screen and (min-width: 36rem) {
+	.header-nav__inner {
+		background:
+			repeating-linear-gradient(
+				to right,
+				#0001 0,
+				#0001 1rem,
+				#0000 1rem,
+				#0000 calc(((100% - 9rem) / 8) + 1rem)
+			),
+			#0C2C3A;
+	}
+}
