@@ -127,6 +127,28 @@ function PageHeader ({ navClickHandler, ...props }) {
 					</div>
 					<button className="header-nav__button" onClick={navClickHandler}>
 						show / hide menu
+						<svg
+							className="header-nav__button-icon"
+							viewBox="0 0 16 12"
+							width="16px"
+							height="12px"
+							version="1.1"
+							xmlns="http://www.w3.org/2000/svg"
+							xmlnsXlink="http://www.w3.org/1999/xlink"
+							preserveAspectRatio="xMidYMid meet"
+						>
+						<polygon
+							points="
+							1 3
+							4 3
+							8 7
+							12 3
+							15 3
+							8 10"
+							stroke="none"
+							fill="#FFF"
+						/>
+						</svg>
 					</button>
 				</div>
 				<div className="header-nav__links">

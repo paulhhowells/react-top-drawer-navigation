@@ -104,6 +104,28 @@ body.no-scroll {
 	font-size: 1em;
 	line-height: 1.375;
 }
+.header-nav__button-state,
+.a11y-hidden {
+	/* Hide visually, but keep accessible to assistive technology users. */
+	overflow: hidden;
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	margin: -1px;
+	clip: rect(0 0 0 0);
+	clip-path: polygon(0px 0px, 0px 0px, 0px 0px);
+	white-space: nowrap; /* https://medium.com/@jessebeach/beware-smushed-off-screen-accessible-text-5952a4c2cbfe */
+}
+.header-nav__button-icon {
+	position: relative;
+	bottom: -0.125em;
+	margin-left: 0.5em;
+	transition: transform 1s ease-in-out
+}
+.nav--enter .header-nav__button-icon {
+	transform: rotate(180deg);
+}
+
 .header-nav__links {
 	position: absolute;
 	overflow: hidden;
@@ -204,7 +226,8 @@ body.no-scroll {
 /* https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion */
 @media (prefers-reduced-motion: reduce) {
 	.nav--enter .header-nav__links-inner,
-	.nav--leave .header-nav__links-inner {
+	.nav--leave .header-nav__links-inner,
+	.header-nav__button-icon {
 		transition: none;
 		animation: none;
 	}
