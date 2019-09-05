@@ -134,7 +134,6 @@ function PageHeader ({ navClickHandler, buttonStateText, ...props }) {
 					<button
 						className="header-nav__button"
 						onClick={ navClickHandler }
-						onFocus={ navClickHandler }
 						aria-live="polite">
 						<span className="header-nav__button-state">{ buttonStateText } </span>
 						menu
