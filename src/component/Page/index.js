@@ -18,6 +18,10 @@ const TARGET = {
 	OPEN: 'OPEN',
 	CLOSED: 'CLOSED'
 };
+const BUTTON_STATE_TEXT = {
+	OPEN: 'hide',
+	CLOSED: 'show',
+}
 const PAGE_CLASS = {
 	OPENING: 'nav--enter',
 	OPENING_ACTIVE: 'nav--enter nav--enter-active',
@@ -106,9 +110,11 @@ function Page ({ className, children, ...props }) {
 	pageClassName += PAGE_CLASS[state.mode] ? ` ${PAGE_CLASS[state.mode]}` : '';
 	pageClassName += className ? ` ${className}` : '';
 
+	const buttonStateText = BUTTON_STATE_TEXT[state.target] || '';
+
 	return (
 		<div className={pageClassName} {...props}>
-			<PageHeader navClickHandler={navClickHandler} />
+			<PageHeader navClickHandler={navClickHandler} buttonStateText={buttonStateText} />
 
 			{children}
 
@@ -117,7 +123,7 @@ function Page ({ className, children, ...props }) {
 	);
 }
 
-function PageHeader ({ navClickHandler, ...props }) {
+function PageHeader ({ navClickHandler, buttonStateText, ...props }) {
 	return (
 		<header className="header-nav" {...props}>
 			<nav className="header-nav__inner" role="navigation">
@@ -125,8 +131,13 @@ function PageHeader ({ navClickHandler, ...props }) {
 					<div className="header-nav__logo">
 						<a href="/">logo</a>
 					</div>
-					<button className="header-nav__button" onClick={navClickHandler}>
-						show / hide menu
+					<button
+						className="header-nav__button"
+						onClick={ navClickHandler }
+						onFocus={ navClickHandler }
+						aria-live="polite">
+						<span className="header-nav__button-state">{ buttonStateText } </span>
+						menu
 						<svg
 							className="header-nav__button-icon"
 							viewBox="0 0 16 12"
