@@ -1,29 +1,29 @@
-import React, { useEffect, useReducer } from "react";
-import "./page.css";
+import React, { useEffect, useReducer } from 'react';
+import './page.css';
 
 const MODE = {
-	OPENING: "OPENING",
-	OPENING_ACTIVE: "OPENING_ACTIVE",
-	CLOSING: "CLOSING",
-	CLOSING_ACTIVE: "CLOSING_ACTIVE",
-	CLOSED: "CLOSED"
+	OPENING: 'OPENING',
+	OPENING_ACTIVE: 'OPENING_ACTIVE',
+	CLOSING: 'CLOSING',
+	CLOSING_ACTIVE: 'CLOSING_ACTIVE',
+	CLOSED: 'CLOSED'
 };
 const ACTION = {
-	CLICK: "CLICK",
-	OPENING_ACTIVE: "OPENING_ACTIVE",
-	CLOSING_ACTIVE: "CLOSING_ACTIVE",
-	CLOSING_DONE: "CLOSING_DONE"
+	CLICK: 'CLICK',
+	OPENING_ACTIVE: 'OPENING_ACTIVE',
+	CLOSING_ACTIVE: 'CLOSING_ACTIVE',
+	CLOSING_DONE: 'CLOSING_DONE'
 };
 const TARGET = {
-	OPEN: "OPEN",
-	CLOSED: "CLOSED"
+	OPEN: 'OPEN',
+	CLOSED: 'CLOSED'
 };
 const PAGE_CLASS = {
-	OPENING: "nav--enter",
-	OPENING_ACTIVE: "nav--enter nav--enter-active",
-	CLOSING: "nav--leave",
-	CLOSING_ACTIVE: "nav--leave nav--leave-active",
-	CLOSED: ""
+	OPENING: 'nav--enter',
+	OPENING_ACTIVE: 'nav--enter nav--enter-active',
+	CLOSING: 'nav--leave',
+	CLOSING_ACTIVE: 'nav--leave nav--leave-active',
+	CLOSED: ''
 };
 const initialState = {
 	target: TARGET.CLOSED,
@@ -62,7 +62,7 @@ const reducer = (state, action) => {
 			return newState;
 
 		default:
-			throw new Error("Reducer action not found: " + action);
+			throw new Error('Reducer action not found: ' + action);
 	}
 };
 
@@ -73,10 +73,10 @@ function Page ({ className, children, ...props }) {
 
 	useEffect(() => {
 		if (state.target === TARGET.OPEN) {
-			document.body.classList.add("no-scroll");
+			document.body.classList.add('no-scroll');
 		}
 
-		return () => document.body.classList.remove("no-scroll");
+		return () => document.body.classList.remove('no-scroll');
 	}, [state]);
 
 	switch (state.mode) {
@@ -102,9 +102,9 @@ function Page ({ className, children, ...props }) {
 		dispatch({ type: ACTION.CLICK });
 	}
 
-	let pageClassName = "page";
-	pageClassName += PAGE_CLASS[state.mode] ? ` ${PAGE_CLASS[state.mode]}` : "";
-	pageClassName += className ? ` ${className}` : "";
+	let pageClassName = 'page';
+	pageClassName += PAGE_CLASS[state.mode] ? ` ${PAGE_CLASS[state.mode]}` : '';
+	pageClassName += className ? ` ${className}` : '';
 
 	return (
 		<div className={pageClassName} {...props}>
