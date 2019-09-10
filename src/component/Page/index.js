@@ -81,20 +81,24 @@ let closingDoneTimeoutId = null;
 function Page ({ className, children, ...props }) {
 	const [state, dispatch] = useReducer(reducer, initialState);
 
+	function navClickHandler () {
+		dispatch(ACTION.CLICK);
+	}
+
 	useEffect(() => {
 		if (state.target === TARGET.OPEN) {
 			document.body.classList.add('no-scroll');
+
+			if (closingDoneTimeoutId) {
+				clearTimeout(closingDoneTimeoutId);
+			}
 		}
 
 		return () => {
 			document.body.classList.remove('no-scroll');
-			clearTimeout(closingDoneTimeoutId);
+			// clearTimeout(closingDoneTimeoutId);
 		};
 	}, [state]);
-
-	if (state.target === TARGET.OPEN && closingDoneTimeoutId) {
-		clearTimeout(closingDoneTimeoutId);
-	}
 
 	switch (state.mode) {
 		case MODE.OPENING:
@@ -115,10 +119,6 @@ function Page ({ className, children, ...props }) {
 		default:
 	}
 
-	function navClickHandler () {
-		dispatch(ACTION.CLICK);
-	}
-
 	let pageClassName = 'page';
 	pageClassName += PAGE_CLASS[state.mode] ? ` ${PAGE_CLASS[state.mode]}` : '';
 	pageClassName += className ? ` ${className}` : '';
@@ -128,9 +128,7 @@ function Page ({ className, children, ...props }) {
 	return (
 		<div className={pageClassName} {...props}>
 			<PageHeader navClickHandler={navClickHandler} buttonStateText={buttonStateText} />
-
 			{children}
-
 			<div id="overlay" className="overlay"></div>
 		</div>
 	);

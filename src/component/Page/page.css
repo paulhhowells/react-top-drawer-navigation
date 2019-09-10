@@ -160,6 +160,12 @@ body.no-scroll {
 .nav--leave-active .header-nav__links-inner {
 	transform: translate(0, -100%);
 }
+@media screen and (min-width: 48rem) {
+	.nav--leave-active .header-nav__links-inner {
+		transition: none;
+		transform: translate(0, 0);
+	}
+}
 
 .header-nav__links-inner a {
 	display: block;
