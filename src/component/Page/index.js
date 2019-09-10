@@ -37,12 +37,13 @@ const initialState = {
 const reducer = (state, action) => {
 	const newState = { ...state };
 
-	switch (action.type) {
+	switch (action) {
 		case ACTION.CLICK:
 			newState.target =
 				state.target === TARGET.OPEN
 				? TARGET.CLOSED
 				: TARGET.OPEN;
+
 			newState.mode =
 				newState.target === TARGET.OPEN
 				? MODE.OPENING
@@ -94,16 +95,16 @@ function Page ({ className, children, ...props }) {
 
 	switch (state.mode) {
 		case MODE.OPENING:
-			window.requestAnimationFrame(() => dispatch({ type: ACTION.OPENING_ACTIVE }));
+			window.requestAnimationFrame(() => dispatch(ACTION.OPENING_ACTIVE));
 
 			break;
 		case MODE.CLOSING:
-			window.requestAnimationFrame(() => dispatch({ type: ACTION.CLOSING_ACTIVE }));
+			window.requestAnimationFrame(() => dispatch(ACTION.CLOSING_ACTIVE));
 
 			break;
 		case MODE.CLOSING_ACTIVE:
-			setTimeout(
-				() => dispatch({ type: ACTION.CLOSING_DONE }),
+			closingDoneTimeoutId = setTimeout(
+				() => dispatch(ACTION.CLOSING_DONE),
 				CLOSING_ANIMATION_DURATION
 			);
 
@@ -112,7 +113,7 @@ function Page ({ className, children, ...props }) {
 	}
 
 	function navClickHandler () {
-		dispatch({ type: ACTION.CLICK });
+		dispatch(ACTION.CLICK);
 	}
 
 	let pageClassName = 'page';
