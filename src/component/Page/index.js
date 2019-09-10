@@ -2,32 +2,35 @@ import React, { useEffect, useReducer } from 'react';
 import './page.css';
 
 const MODE = {
-	OPENING: 'OPENING',
-	OPENING_ACTIVE: 'OPENING_ACTIVE',
-	CLOSING: 'CLOSING',
-	CLOSING_ACTIVE: 'CLOSING_ACTIVE',
-	CLOSED: 'CLOSED'
+	OPENING: 'MODE_OPENING',
+	OPENING_ACTIVE: 'MODE_OPENING_ACTIVE',
+	CLOSING: 'MODE_CLOSING',
+	CLOSING_ACTIVE: 'MODE_CLOSING_ACTIVE',
+	CLOSED: 'MODE_CLOSED',
 };
 const ACTION = {
 	CLICK: 'CLICK',
 	OPENING_ACTIVE: 'OPENING_ACTIVE',
 	CLOSING_ACTIVE: 'CLOSING_ACTIVE',
-	CLOSING_DONE: 'CLOSING_DONE'
+	CLOSING_DONE: 'CLOSING_DONE',
 };
+const
+	OPEN = Symbol('TARGET_OPEN'),
+	CLOSED = Symbol('TARGET_CLOSED');
 const TARGET = {
-	OPEN: 'OPEN',
-	CLOSED: 'CLOSED'
+	OPEN,
+	CLOSED,
 };
 const BUTTON_STATE_TEXT = {
-	OPEN: 'hide',
-	CLOSED: 'show',
-}
+	[OPEN]: 'hide',
+	[CLOSED]: 'show',
+};
 const PAGE_CLASS = {
-	OPENING: 'nav--enter',
-	OPENING_ACTIVE: 'nav--enter nav--enter-active',
-	CLOSING: 'nav--leave',
-	CLOSING_ACTIVE: 'nav--leave nav--leave-active',
-	CLOSED: ''
+	MODE_OPENING: 'nav--enter',
+	MODE_OPENING_ACTIVE: 'nav--enter nav--enter-active',
+	MODE_CLOSING: 'nav--leave',
+	MODE_CLOSING_ACTIVE: 'nav--leave nav--leave-active',
+	MODE_CLOSED: ''
 };
 const initialState = {
 	target: TARGET.CLOSED,
