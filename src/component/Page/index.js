@@ -72,6 +72,8 @@ const reducer = (state, action) => {
 
 const CLOSING_ANIMATION_DURATION = 1020;
 
+let closingDoneTimeoutId = null;
+
 function Page ({ className, children, ...props }) {
 	const [state, dispatch] = useReducer(reducer, initialState);
 
@@ -80,8 +82,15 @@ function Page ({ className, children, ...props }) {
 			document.body.classList.add('no-scroll');
 		}
 
-		return () => document.body.classList.remove('no-scroll');
+		return () => {
+			document.body.classList.remove('no-scroll');
+			clearTimeout(closingDoneTimeoutId);
+		};
 	}, [state]);
+
+	if (state.target === TARGET.OPEN && closingDoneTimeoutId) {
+		clearTimeout(closingDoneTimeoutId);
+	}
 
 	switch (state.mode) {
 		case MODE.OPENING:
