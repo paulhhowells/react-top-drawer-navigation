@@ -42,7 +42,7 @@ body.no-scroll {
 	height: 0;
 	width: 100%;
 	z-index: 1;
-	background: #111D;
+	background: #0007;
 	pointer-events: none;
 
 	-webkit-user-select: none;  /* Chrome all / Safari all */
@@ -149,7 +149,7 @@ body.no-scroll {
 	display: flow-root;
 	box-sizing: border-box;
 	padding: 1.25rem 1rem;
-	background: #0C2C3A;
+	background: #050505;
 }
 .nav--enter .header-nav__links-inner {
 	transition: transform 1s;
@@ -174,23 +174,65 @@ body.no-scroll {
 
 .header-nav__links-inner a {
 	display: block;
-	padding: 0.5em 0;
+	margin-left: -1rem;
+	margin-right: -1rem;
+	padding: 1em;
+	border-bottom: 1px solid #222;
+
+	font-size: 1rem;
+	line-height: 1.5;
+
+	transition: padding-left 1s, color 1s;
 }
 .header-nav__links-inner a,
 .header-nav__links-inner a:link,
 .header-nav__links-inner a:visited {
-	color: #fff;
-	text-decoration: underline;
+	color: #f5f5f5;
+	text-decoration: none;
 }
 .header-nav__links-inner a:focus,
 .header-nav__links-inner a:hover {
-	color: #fff;
+	color: #AAA;
 	text-decoration: none;
-	background: lime;
+	/* background: #000; */
+
+
+	padding-left: 1.75em;
 }
-.header-nav__links-inner a:active {
-	background: cyan;
+.header-nav__links-inner a:active {	/* background: cyan; */}
+.header-nav__links-inner .header-nav__link-current {
+	color: #fff;
+	/* padding-left: 1.75em; */
 }
+
+.header-nav__links-inner .header-nav__account {}
+.header-nav__links-inner .header-nav__call-to-action {
+	display: block;
+	margin: 1rem 0;
+	padding: 0.75em 1em;
+	border: 1px solid rgba(255, 255, 255, 0.2);
+	border-radius: 4px;
+	text-align: center;
+	font-weight: 600;
+	background-color: #8fd1b9;
+}
+.header-nav__links-inner .header-nav__call-to-action,
+.header-nav__links-inner a.header-nav__call-to-action,
+.header-nav__links-inner a.header-nav__call-to-action:link,
+.header-nav__links-inner a.header-nav__call-to-action:visited,
+.header-nav__links-inner a.header-nav__call-to-action:hover,
+.header-nav__links-inner a.header-nav__call-to-action:focus {
+	margin: 1rem 0;
+	padding: 0.75em 1em;
+	color: #000;
+}
+@media screen and (min-width: 48rem) {
+	.header-nav__account {}
+	.header-nav__call-to-action {
+		display: inline-block;
+	}
+}
+
 
 @media screen and (min-width: 48rem) {
 	.header-nav {}
@@ -226,9 +268,14 @@ body.no-scroll {
 	}
 	.header-nav__links-inner a {
 		display: inline-block;
+	}
+	.header-nav__links-inner a,
+	.header-nav__links-inner a:focus,
+	.header-nav__links-inner a:hover {
 		margin: 0 0 0 1em;
 		padding: 0.25rem 0;
 	}
+
 	.header-nav__button {
 		display: none;
 	}

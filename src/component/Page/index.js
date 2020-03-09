@@ -174,10 +174,12 @@ function PageHeader ({ navClickHandler, buttonStateText, ...props }) {
 				</div>
 				<div className="header-nav__links">
 					<div className="header-nav__links-inner">
-						<a href="/">Link A</a>
-						<a href="/">Link B</a>
-						<a href="/">Link C</a>
-						<a href="/">Link D</a>
+						<a href="/">How it works</a>
+						<a href="/" className="header-nav__link-current">Our packages</a>
+						<a href="/">Why us</a>
+						<a href="/">Support</a>
+						<a href="/" className="header-nav__account">Account</a>
+						<a href="/" className="header-nav__call-to-action">Get a quote</a>
 					</div>
 				</div>
 			</nav>
